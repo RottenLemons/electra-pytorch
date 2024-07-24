@@ -194,7 +194,8 @@ class Electra(nn.Module):
             gen_labels,
             ignore_index = self.pad_token_id
         )
-
+        print(logits)
+        print(mask_indices)
         # use mask from before to select logits that need sampling
         sample_logits = logits[mask_indices]
 
