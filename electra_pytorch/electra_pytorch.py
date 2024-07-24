@@ -188,14 +188,14 @@ class Electra(nn.Module):
 
         # get generator output and get mlm loss
         logits = self.generator(masked_input, **kwargs)
-
+        print(logits.shape, logits)
+        print(gen_labels.shape, gen_labels)
         mlm_loss = F.cross_entropy(
             logits.transpose(1, 2),
             gen_labels,
             ignore_index = self.pad_token_id
         )
-        print(logits)
-        print(mask_indices)
+
         # use mask from before to select logits that need sampling
         sample_logits = logits[mask_indices]
 
